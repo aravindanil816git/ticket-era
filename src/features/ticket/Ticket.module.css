@@ -1,0 +1,31 @@
+.ticket {
+    border: 1px solid #f0f0f0;
+    border-radius: 5px;
+    box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;
+    width: 300px;
+}
+
+.ticket:hover {
+    cursor: move;
+}
+
+.warningIcon {
+    color: #d25c5c !important;
+    padding-right: 4px;
+}
+
+.editWrapper .editIcon:hover {
+    color: #096dd9;
+    cursor: pointer;
+}
+
+.bandWrapper {
+    display: flex;
+    margin-left: -18px;
+    position: absolute;
+    margin-top: -12px;
+}
+
+.progressBand {
+    transform: rotate(90deg);
+}

@@ -1,0 +1,26 @@
+.headerWrapper {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 10px;
+}
+
+.input_wrapper{
+    display: flex;
+    flex-direction: row;
+}
+
+.input_wrapper input[type="text"] {
+    width: 200%;
+}
+
+.columns {
+    background: #fafafa9e;
+    padding: 10px;
+    border-right: 1.5px dashed #e4e4e4;
+    height: calc(100vh - 20px);
+}
+
+.columTitle {
+    display: flex;
+    justify-content: center;
+    text-decoration: underline;
+}
