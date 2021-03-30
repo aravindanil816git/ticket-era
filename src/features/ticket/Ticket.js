@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card, Space, Menu, Dropdown , Badge} from 'antd';
-import { DownOutlined, ExclamationCircleOutlined, EditOutlined, MinusOutlined } from '@ant-design/icons';
+import { DownOutlined, ExclamationCircleOutlined, EditOutlined } from '@ant-design/icons';
 import { NavLink } from 'react-router-dom';
 
 import { BOARD_PROGRESS_COLUMNS, TICKET_DONE_REASONS, TICKET_ID_IDENTIFIER } from '../../lib/Constants';
