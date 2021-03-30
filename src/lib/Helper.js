@@ -4,14 +4,18 @@ const helper = {
     getColorByProgress: (progress) => {
         switch (progress) {
             case BOARD_PROGRESS_COLUMNS.IN_PROGRESS:
-                return "orange";
+                return "warning";
             case BOARD_PROGRESS_COLUMNS.DONE:
-                return "blue";
+                return "processing";
             case BOARD_PROGRESS_COLUMNS.COMPLETED:
-                return "green";
+                return "success";
             default:
-                return "gray";
+                return "default";
         }
+    },
+    renderDateString: (dateUTCStr) => {
+        const newDate = new Date(dateUTCStr);
+        return `${newDate.getDate()}-${newDate.getMonth() + 1}-${newDate.getFullYear()}`
     }
 }
 export default helper;

@@ -27,5 +27,5 @@
 }
 
 .progressBand {
-    transform: rotate(90deg);
+    margin-left: 4px !important;
 }

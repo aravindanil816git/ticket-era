@@ -8,7 +8,7 @@ import {
 } from '../../app/boardSlice';
 
 import styles from './Board.module.css';
-import { Button, Input, Row, Col, Typography } from 'antd';
+import { Button, Input, Row, Col, Typography , message} from 'antd';
 
 import { Ticket } from '../ticket/Ticket';
 
@@ -33,10 +33,6 @@ export function Board() {
     const getTicketDetails = () => {
         debugger;
         document.getElementsByClassName(TICKET_TITLE_INPUT_CLASSNAME)[0].value = " ";
-        if (!newTicketTitle) {
-            alert(TICKETTITLE_WARNING);
-            return;
-        }
         dispatch(addNewTicket({
             id: `tkt-${newTicketID}`,
             title: newTicketTitle,
@@ -61,6 +57,10 @@ export function Board() {
     }
 
     const postNewTicket = () => {
+        if (!newTicketTitle) {
+            message.error(TICKETTITLE_WARNING,[5]);
+            return;
+        }
         toggleLoadingState(true);
         delay(3000).then(() => {
             getTicketDetails();

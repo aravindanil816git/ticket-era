@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom'
-import { Modal, Button, Form, Input, Radio, Select } from 'antd';
+import { Modal, Button, Form, Input, Radio, Select, message, Tag } from 'antd';
+import {
+    CheckCircleOutlined,
+    ClockCircleOutlined
+} from '@ant-design/icons';
 
-import { BOARD_PROGRESS_COLUMNS, TICKET_DONE_REASONS } from '../../lib/Constants';
+import { BOARD_PROGRESS_COLUMNS, TICKET_DONE_REASONS, TICKETSAVE_SUCCESS } from '../../lib/Constants';
 
 
 import {
     selectBoard,
     updateTicketStatus
 } from '../../app/boardSlice';
+import helper from '../../lib/Helper';
 
 
 export function TicketExpanded() {
@@ -59,6 +64,7 @@ export function TicketExpanded() {
             updateTicketDetails();
             setIsModalVisible(false);
             redirectToHome();
+            message.success(TICKETSAVE_SUCCESS)
         }
     };
 
@@ -139,12 +145,16 @@ export function TicketExpanded() {
                 }
                 ]}>
                     <Select className="reason_select" value="COMPLETED">
-                        {Object.entries(TICKET_DONE_REASONS).map((obj,index) => (
+                        {Object.entries(TICKET_DONE_REASONS).map((obj, index) => (
                             <Select.Option value={obj[1]} key={`reason_${index}`} >{obj[1]}</Select.Option>
                         )
                         )}
                     </Select>
                 </Form.Item>}
+                <div>
+                    <Tag icon={<ClockCircleOutlined />} color="default"> {helper.renderDateString(ticket.startDate)}</Tag>
+                    {ticket.endDate && <Tag icon={<CheckCircleOutlined />} color="success">{helper.renderDateString(ticket.endDate)}</Tag>}
+                </div>
             </Form>
         </Modal>
     )

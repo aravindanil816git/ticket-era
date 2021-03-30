@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { BOARD_PROGRESS_COLUMNS } from '../lib/Constants';
+import { BOARD_PROGRESS_COLUMNS , TICKET_DONE_REASONS} from '../lib/Constants';
 
 export const boardSlice = createSlice({
     name: 'board',
@@ -46,6 +46,10 @@ export const boardSlice = createSlice({
                 if (action.payload.progress === BOARD_PROGRESS_COLUMNS.DONE) {
                     tickets[index].endDate = Date.now();
                     tickets[index].closeReason = action.payload.closeReason;
+                }
+                if (action.payload.progress === BOARD_PROGRESS_COLUMNS.COMPLETED) {
+                    tickets[index].endDate = Date.now();
+                    tickets[index].closeReason = TICKET_DONE_REASONS.COMPLETED;
                 }
             }
             console.log(tickets);

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Space, Menu, Dropdown } from 'antd';
+import { Card, Space, Menu, Dropdown , Badge} from 'antd';
 import { DownOutlined, ExclamationCircleOutlined, EditOutlined, MinusOutlined } from '@ant-design/icons';
 import { NavLink } from 'react-router-dom';
 
@@ -39,7 +39,7 @@ export function Ticket(props) {
         return (
             <div className={styles.bandWrapper}>
                 <div>
-                    <MinusOutlined className={styles.progressBand} style={{ color: Helper.getColorByProgress(progress) }} />
+                    <Badge className={styles.progressBand} status={Helper.getColorByProgress(progress)} />
                 </div>
                 <div>{title}</div>
             </div>
