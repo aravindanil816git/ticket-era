@@ -31,7 +31,6 @@ export function TicketExpanded() {
     const onValueChange = (updatedFields) => {
         var fieldName = Object.keys(updatedFields)[0];
         var fieldValue = Object.values(updatedFields)[0];
-        debugger;
         switch (fieldName) {
             case "title":
                 setTicketTitle(fieldValue);
@@ -62,7 +61,6 @@ export function TicketExpanded() {
     };
 
     const updateTicketDetails = () => {
-        debugger;
         const completionDate = ticketProgress === BOARD_PROGRESS_COLUMNS.COMPLETED ? Date.now() : "";
         const closeReason = ticketProgress === BOARD_PROGRESS_COLUMNS.DONE && ticketReasonToDone ? ticketReasonToDone : ""
         dispatch(updateTicketStatus({
@@ -86,7 +84,6 @@ export function TicketExpanded() {
             isFormValid = false;
         if (ticketProgress === BOARD_PROGRESS_COLUMNS.DONE && !ticketReasonToDone) {
             isFormValid = false;
-            debugger;
             document.querySelector('.reason_select input').focus();
         }
         return isFormValid;

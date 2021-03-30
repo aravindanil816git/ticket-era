@@ -5,7 +5,7 @@ export const boardSlice = createSlice({
     name: 'board',
     initialState: {
         value: [{
-            id: "tkt_prod_12",
+            id: "tkt_567",
             title: "Prod Bug",
             progress: "NOT STARTED",
             description: "Fix the production Bug",
@@ -14,7 +14,7 @@ export const boardSlice = createSlice({
             closeReason:""
         },
         {
-            id: "tkt_prod_13",
+            id: "tkt_750",
             title: "Staging Bug",
             progress: "IN PROGRESS",
             description: "Fix the staging Bug",

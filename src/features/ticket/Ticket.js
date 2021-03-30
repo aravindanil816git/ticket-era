@@ -3,7 +3,7 @@ import { Card, Space, Menu, Dropdown } from 'antd';
 import { DownOutlined, ExclamationCircleOutlined, EditOutlined, MinusOutlined } from '@ant-design/icons';
 import { NavLink } from 'react-router-dom';
 
-import { BOARD_PROGRESS_COLUMNS, TICKET_DONE_REASONS } from '../../lib/Constants';
+import { BOARD_PROGRESS_COLUMNS, TICKET_DONE_REASONS, TICKET_ID_IDENTIFIER } from '../../lib/Constants';
 import Helper from '../../lib/Helper';
 
 
@@ -14,7 +14,7 @@ export function Ticket(props) {
     const [closeReason, toggeleCloseReason] = useState(props.closeReason || 'Reason to close');
 
     const drag = (ev, id) => {
-        ev.dataTransfer.setData("text", id);
+        ev.dataTransfer.setData(TICKET_ID_IDENTIFIER, id);
     }
 
     const renderMenu = (id) => {

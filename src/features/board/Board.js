@@ -16,6 +16,7 @@ import {
     TICKET_TITLE_INPUT_CLASSNAME,
     TICKET_TITLE_INPUT_PLACEHOLDER ,
     TICKETTITLE_WARNING,
+    TICKET_ID_IDENTIFIER,
     BOARD_PROGRESS_COLUMNS } from '../../lib/Constants';
 
 export function Board() {
@@ -25,21 +26,24 @@ export function Board() {
 
 
     const [loadingState, toggleLoadingState] = useState(false);
+    const [newTicketTitle, setNewTicketTitle] = useState("");
+    const [newTicketID, setNewTicketID] = useState(1000);
 
 
     const getTicketDetails = () => {
-        const ticketTitle = document.getElementsByClassName(TICKET_TITLE_INPUT_CLASSNAME)[0].value;
         debugger;
         document.getElementsByClassName(TICKET_TITLE_INPUT_CLASSNAME)[0].value = " ";
-        if (!ticketTitle) {
+        if (!newTicketTitle) {
             alert(TICKETTITLE_WARNING);
             return;
         }
         dispatch(addNewTicket({
-            id: generateTicketID(ticketTitle),
-            title: ticketTitle,
+            id: `tkt-${newTicketID}`,
+            title: newTicketTitle,
             progress: BOARD_PROGRESS_COLUMNS.NOT_STARTED
         }))
+        setNewTicketTitle("");
+        setNewTicketID(newTicketID+1)
     }
 
     const generateTicketID = (ticketTitle) => {
@@ -52,8 +56,7 @@ export function Board() {
 
     const onDrop = (evt, newstate) => {
         evt.preventDefault();
-        debugger;
-        const data = evt.dataTransfer.getData("text");
+        const data = evt.dataTransfer.getData(TICKET_ID_IDENTIFIER);
         dispatch(updateTicketStatus({ id: data, progress: newstate }));
     }
 
@@ -77,7 +80,6 @@ export function Board() {
 
 
     const RenderTicketForGrid = (ticketArray = [], progressStatus) => {
-        debugger;
         ticketArray = ticketArray.filter(ticket => ticket.progress === progressStatus);
         if (ticketArray && ticketArray.length == 0) return;
         return ticketArray.map((ticket, index) =>
@@ -91,7 +93,6 @@ export function Board() {
     }
 
     const renderBoardColumns = () => {
-        debugger;
         return Object.entries(BOARD_PROGRESS_COLUMNS).map((obj) => (
             <Col span={6} className={styles.columns} onDragOver={allowDrop} onDrop={(evt) => onDrop(evt, obj[1])}>
                 <Typography.Title className={styles.columTitle} level={5}>{obj[1]}</Typography.Title>
@@ -113,7 +114,7 @@ export function Board() {
                     </Col>
                     <Col span={12} offset={8}>
                         <div className={styles.input_wrapper}>
-                            <Input type="text" className={TICKET_TITLE_INPUT_CLASSNAME} placeholder={TICKET_TITLE_INPUT_PLACEHOLDER} />
+                            <Input type="text" className={TICKET_TITLE_INPUT_CLASSNAME} placeholder={TICKET_TITLE_INPUT_PLACEHOLDER} value={newTicketTitle} onChange={(e) => setNewTicketTitle(e.target.value)}/>
                             {loadingState ?
                                 <Button type="primary" loading={true}>Adding Ticket</Button> :
                                 <Button type="primary" onClick={() => postNewTicket(5000)}>Add Ticket</Button>
