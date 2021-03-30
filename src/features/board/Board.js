@@ -46,10 +46,6 @@ export function Board() {
         setNewTicketID(newTicketID+1)
     }
 
-    const generateTicketID = (ticketTitle) => {
-        return `tkt_${ticketTitle.substring(0, 5).trim()}_${Math.floor(Math.random() * 10)}`
-    }
-
     const allowDrop = (evt) => {
         evt.preventDefault();
     }
@@ -81,7 +77,7 @@ export function Board() {
 
     const RenderTicketForGrid = (ticketArray = [], progressStatus) => {
         ticketArray = ticketArray.filter(ticket => ticket.progress === progressStatus);
-        if (ticketArray && ticketArray.length == 0) return;
+        if (ticketArray && ticketArray.length === 0) return;
         return ticketArray.map((ticket, index) =>
         (
 
@@ -93,8 +89,8 @@ export function Board() {
     }
 
     const renderBoardColumns = () => {
-        return Object.entries(BOARD_PROGRESS_COLUMNS).map((obj) => (
-            <Col span={6} className={styles.columns} onDragOver={allowDrop} onDrop={(evt) => onDrop(evt, obj[1])}>
+        return Object.entries(BOARD_PROGRESS_COLUMNS).map((obj,index) => (
+            <Col key={`col${index}`}  span={6} className={styles.columns} onDragOver={allowDrop} onDrop={(evt) => onDrop(evt, obj[1])}>
                 <Typography.Title className={styles.columTitle} level={5}>{obj[1]}</Typography.Title>
                 {RenderTicketForGrid(tickets, obj[1])}
             </Col>

@@ -44,6 +44,8 @@ export function TicketExpanded() {
             case "reason_to_done":
                 setTicketReasonToDone(fieldValue);
                 break;
+            default:
+                break;
         }
     };
 
@@ -137,8 +139,8 @@ export function TicketExpanded() {
                 }
                 ]}>
                     <Select className="reason_select" value="COMPLETED">
-                        {Object.entries(TICKET_DONE_REASONS).map((obj) => (
-                            <Select.Option value={obj[1]}>{obj[1]}</Select.Option>
+                        {Object.entries(TICKET_DONE_REASONS).map((obj,index) => (
+                            <Select.Option value={obj[1]} key={`reason_${index}`} >{obj[1]}</Select.Option>
                         )
                         )}
                     </Select>

@@ -23,8 +23,8 @@ export function Ticket(props) {
                 <Menu.Item disabled>
                     <div>Reason to Close</div>
                 </Menu.Item>
-                { Object.entries(TICKET_DONE_REASONS).map((obj) => (
-                    <Menu.Item>
+                { Object.entries(TICKET_DONE_REASONS).map((obj,index) => (
+                    <Menu.Item key={`reason_${index}`} >
                         <div onClick={() => {
                             toggeleCloseReason(obj[1]);
                             props.onTicketComplete(id, closeReason);
@@ -66,9 +66,9 @@ export function Ticket(props) {
                     <>
                         {closeReason === 'Reason to close' && <ExclamationCircleOutlined className={styles.warningIcon} />}
                         <Dropdown overlay={() => renderMenu(props.id)}>
-                            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                            <span className="ant-dropdown-link" onClick={e => e.preventDefault()}>
                                 {closeReason} <DownOutlined />
-                            </a>
+                            </span>
                         </Dropdown>
                     </>
                 }
