@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -6,8 +6,23 @@ import {
 } from "react-router-dom";
 
 import { Board } from './features/board/Board'
-import { TicketExpanded } from './features/ticket/TicketExpanded';
+// import { TicketExpanded } from './features/ticket/TicketExpanded';
 import './App.css';
+
+import { Spin, Space, Modal } from 'antd';
+
+
+const TicketExpandedModal = lazy(() => import('./features/ticket/TicketExpanded'));
+
+const Spinner = () => {
+  return (
+    <Modal title="Basic Modal" visible={true}>
+      <Space>
+        <Spin size="large" />
+      </Space>
+    </Modal>
+  )
+}
 
 
 function App() {
@@ -16,10 +31,12 @@ function App() {
       <header className="App-header">
         <Router>
           <div>
-          <Board />
+            <Board />
             <Switch>
               <Route path="/ticket/:id">
-                <TicketExpanded />
+                <Suspense fallback={<Spinner/> }>
+                  <TicketExpandedModal />
+                </Suspense>
               </Route>
             </Switch>
           </div>

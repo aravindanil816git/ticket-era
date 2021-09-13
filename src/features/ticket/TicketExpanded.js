@@ -17,7 +17,7 @@ import {
 import helper from '../../lib/Helper';
 
 
-export function TicketExpanded() {
+export default function TicketExpanded() {
 
     const { id } = useParams();
     const history = useHistory();
@@ -158,4 +158,4 @@ export function TicketExpanded() {
             </Form>
         </Modal>
     )
-}
+};

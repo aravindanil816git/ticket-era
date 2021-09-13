@@ -13,6 +13,9 @@ const helper = {
                 return "default";
         }
     },
+    setDelay: (ms) => {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    },
     renderDateString: (dateUTCStr) => {
         const newDate = new Date(dateUTCStr);
         return `${newDate.getDate()}-${newDate.getMonth() + 1}-${newDate.getFullYear()}`
