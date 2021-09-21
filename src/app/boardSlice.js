@@ -29,11 +29,11 @@ export const boardSlice = createSlice({
 
             if (action.payload.progress && action.payload.progress !== tickets[index].progress){
                 tickets[index].progress = action.payload.progress
-                if (action.payload.progress === BOARD_PROGRESS_COLUMNS.DONE) {
+                if (action.payload.progress === BOARD_PROGRESS_COLUMNS.DONE.value) {
                     tickets[index].endDate = Date.now();
                     tickets[index].closeReason = action.payload.closeReason;
                 }
-                if (action.payload.progress === BOARD_PROGRESS_COLUMNS.COMPLETED) {
+                if (action.payload.progress === BOARD_PROGRESS_COLUMNS.COMPLETED.value) {
                     tickets[index].endDate = Date.now();
                     tickets[index].closeReason = TICKET_DONE_REASONS.COMPLETED;
                 }
@@ -47,7 +47,7 @@ export const boardSlice = createSlice({
             const tickets = [...state.value];
             const index = tickets.findIndex(tkt => tkt.id === action.payload.id)
             tickets[index].completionDate = Date.now();
-            tickets[index].progress = BOARD_PROGRESS_COLUMNS.COMPLETED;
+            tickets[index].progress = BOARD_PROGRESS_COLUMNS.COMPLETED.value;
             tickets[index].closeReason = action.payload.closeReason;
             state.value = tickets;
             helper.setStorageData("t2d_tasks", tickets)

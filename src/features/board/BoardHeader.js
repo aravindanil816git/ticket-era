@@ -46,7 +46,7 @@ const BoardHeader = React.memo(() => {
             id: `tkt-${newTicketID}`,
             title: newTicketTitle,
             startDate: Date.now(),
-            progress: BOARD_PROGRESS_COLUMNS.NOT_STARTED
+            progress: BOARD_PROGRESS_COLUMNS.NOT_STARTED.value
         }))
         setNewTicketTitle("");
         setNewTicketID(newTicketID + 1)
@@ -57,7 +57,8 @@ const BoardHeader = React.memo(() => {
             <Row>
                 <Col span={4}>
                     <div>
-                        <Typography.Title level={3}>Ticketera</Typography.Title>
+                        {/* <Typography.Title level={3}>Ticketera</Typography.Title> */}
+                        <img src="./tBLogo.svg" alt="logo" />
                     </div>
                 </Col>
                 <Col span={12} offset={8}>

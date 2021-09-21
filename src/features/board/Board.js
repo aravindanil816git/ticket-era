@@ -55,9 +55,9 @@ export function Board() {
 
     const renderBoardColumns = () => {
         return Object.entries(BOARD_PROGRESS_COLUMNS).map((obj,index) => (
-            <Col key={`col${index}`}  span={6} className={styles.columns} onDragOver={allowDrop} onDrop={(evt) => onDrop(evt, obj[1])}>
-                <Typography.Title className={styles.columTitle} level={5}>{obj[1]}</Typography.Title>
-                {RenderTicketForGrid(tickets, obj[1])}
+            <Col key={`col${index}`}  span={6} className={styles.columns} onDragOver={allowDrop} onDrop={(evt) => onDrop(evt, obj[1].value)}>
+                <Typography.Title className={styles.columTitle} level={5}>{obj[1].label}</Typography.Title>
+                {RenderTicketForGrid(tickets, obj[1].value)}
             </Col>
         ));
     }

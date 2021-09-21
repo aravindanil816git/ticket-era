@@ -62,7 +62,7 @@ export function Ticket(props) {
                 extra={renderEditIconWrapper(props.id)}
                 draggable={true} onDragStart={(evt) => drag(evt, props.id)} hoverable={true}>
                 <p>{props.description}</p>
-                {props.progress === BOARD_PROGRESS_COLUMNS.DONE &&
+                {props.progress === BOARD_PROGRESS_COLUMNS.DONE.value &&
                     <>
                         {closeReason === 'Reason to close' && <ExclamationCircleOutlined className={styles.warningIcon} />}
                         <Dropdown overlay={() => renderMenu(props.id)}>

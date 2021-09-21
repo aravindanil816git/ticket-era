@@ -22,10 +22,11 @@
     flex-direction: column;
 }
 
-.columTitle {
+.columns .columTitle {
     display: flex;
     justify-content: center;
-    text-decoration: underline;
+    font-size: 14px;
+    color: #8F8F8F ;
 }
 
 .headerWrapper .indigoBtn {

@@ -69,8 +69,8 @@ export default function TicketExpanded() {
     };
 
     const updateTicketDetails = () => {
-        const completionDate = ticketProgress === BOARD_PROGRESS_COLUMNS.COMPLETED ? Date.now() : "";
-        const closeReason = ticketProgress === BOARD_PROGRESS_COLUMNS.DONE && ticketReasonToDone ? ticketReasonToDone : ""
+        const completionDate = ticketProgress === BOARD_PROGRESS_COLUMNS.COMPLETED.value ? Date.now() : "";
+        const closeReason = ticketProgress === BOARD_PROGRESS_COLUMNS.DONE.value && ticketReasonToDone ? ticketReasonToDone : ""
         dispatch(updateTicketStatus({
             id: ticket.id,
             title: ticketTitle,
@@ -90,7 +90,7 @@ export default function TicketExpanded() {
         let isFormValid = true;
         if (!ticketTitle)
             isFormValid = false;
-        if (ticketProgress === BOARD_PROGRESS_COLUMNS.DONE && !ticketReasonToDone) {
+        if (ticketProgress === BOARD_PROGRESS_COLUMNS.DONE.value && !ticketReasonToDone) {
             isFormValid = false;
             document.querySelector('.reason_select input').focus();
         }
@@ -134,13 +134,13 @@ export default function TicketExpanded() {
                 </Form.Item>
                 <Form.Item label="Status" name="progress">
                     <Radio.Group>
-                        <Radio.Button value={BOARD_PROGRESS_COLUMNS.NOT_STARTED}>{BOARD_PROGRESS_COLUMNS.NOT_STARTED}</Radio.Button>
-                        <Radio.Button value={BOARD_PROGRESS_COLUMNS.IN_PROGRESS}>{BOARD_PROGRESS_COLUMNS.IN_PROGRESS}</Radio.Button>
-                        <Radio.Button value={BOARD_PROGRESS_COLUMNS.DONE}>{BOARD_PROGRESS_COLUMNS.DONE}</Radio.Button>
-                        <Radio.Button value={BOARD_PROGRESS_COLUMNS.COMPLETED}>{BOARD_PROGRESS_COLUMNS.COMPLETED}</Radio.Button>
+                        <Radio.Button value={BOARD_PROGRESS_COLUMNS.NOT_STARTED.value}>{BOARD_PROGRESS_COLUMNS.NOT_STARTED.value}</Radio.Button>
+                        <Radio.Button value={BOARD_PROGRESS_COLUMNS.IN_PROGRESS.value}>{BOARD_PROGRESS_COLUMNS.IN_PROGRESS.value}</Radio.Button>
+                        <Radio.Button value={BOARD_PROGRESS_COLUMNS.DONE.value}>{BOARD_PROGRESS_COLUMNS.DONE.value}</Radio.Button>
+                        <Radio.Button value={BOARD_PROGRESS_COLUMNS.COMPLETED.value}>{BOARD_PROGRESS_COLUMNS.COMPLETED.value}</Radio.Button>
                     </Radio.Group>
                 </Form.Item>
-                {ticketProgress === BOARD_PROGRESS_COLUMNS.DONE && <Form.Item label="Reason to Close" required name="reason_to_done" rules={[{
+                {ticketProgress === BOARD_PROGRESS_COLUMNS.DONE.value && <Form.Item label="Reason to Close" required name="reason_to_done" rules={[{
                     required: true
                 }
                 ]}>

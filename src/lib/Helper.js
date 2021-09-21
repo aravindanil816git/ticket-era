@@ -3,11 +3,11 @@ import {BOARD_PROGRESS_COLUMNS} from './Constants';
 const helper = {
     getColorByProgress: (progress) => {
         switch (progress) {
-            case BOARD_PROGRESS_COLUMNS.IN_PROGRESS:
+            case BOARD_PROGRESS_COLUMNS.IN_PROGRESS.value:
                 return "warning";
-            case BOARD_PROGRESS_COLUMNS.DONE:
+            case BOARD_PROGRESS_COLUMNS.DONE.value:
                 return "processing";
-            case BOARD_PROGRESS_COLUMNS.COMPLETED:
+            case BOARD_PROGRESS_COLUMNS.COMPLETED.value:
                 return "success";
             default:
                 return "default";
