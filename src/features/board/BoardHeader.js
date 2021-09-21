@@ -1,5 +1,5 @@
 import React , { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import {  useDispatch } from 'react-redux';
 import {
     addNewTicket
 } from '../../app/boardSlice';
@@ -45,6 +45,7 @@ const BoardHeader = React.memo(() => {
         dispatch(addNewTicket({
             id: `tkt-${newTicketID}`,
             title: newTicketTitle,
+            startDate: Date.now(),
             progress: BOARD_PROGRESS_COLUMNS.NOT_STARTED
         }))
         setNewTicketTitle("");
@@ -63,8 +64,8 @@ const BoardHeader = React.memo(() => {
                     <div className={styles.input_wrapper}>
                         <Input type="text" className={TICKET_TITLE_INPUT_CLASSNAME} placeholder={TICKET_TITLE_INPUT_PLACEHOLDER} value={newTicketTitle} onChange={(e) => setNewTicketTitle(e.target.value)} />
                         {loadingState ?
-                            <Button type="primary" loading={true}>Adding Ticket</Button> :
-                            <Button type="primary" onClick={() => postNewTicket(5000)}>Add Ticket</Button>
+                            <Button type="primary" className={styles.indigoBtn} loading={true}>Adding Ticket</Button> :
+                            <Button type="primary" className={styles.indigoBtn} onClick={() => postNewTicket(5000)}>Add Ticket</Button>
                         }
                     </div>
                 </Col>

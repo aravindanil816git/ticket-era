@@ -18,7 +18,17 @@ const helper = {
     },
     renderDateString: (dateUTCStr) => {
         const newDate = new Date(dateUTCStr);
-        return `${newDate.getDate()}-${newDate.getMonth() + 1}-${newDate.getFullYear()}`
+        return `${newDate.getDate()}-${newDate.getMonth() + 1}-${newDate.getFullYear()}`;
+    },
+    setStorageData: (key, value) => {
+        // if(localStorage.getItem(key)) {
+        //     var exstValue = localStorage.getItem(key);
+        //     value = value;
+        // }
+        localStorage.setItem(key,JSON.stringify(value));
+    },
+    getStorageData: (key) => {
+       return JSON.parse(localStorage.getItem(key));
     }
 }
 export default helper;

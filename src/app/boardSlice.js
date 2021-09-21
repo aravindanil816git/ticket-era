@@ -1,31 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { BOARD_PROGRESS_COLUMNS , TICKET_DONE_REASONS} from '../lib/Constants';
+import helper from '../lib/Helper';
 
 export const boardSlice = createSlice({
     name: 'board',
     initialState: {
-        value: [{
-            id: "tkt_567",
-            title: "Prod Bug",
-            progress: "NOT STARTED",
-            description: "Fix the production Bug",
-            startDate: Date.now(),
-            endDate: "",
-            closeReason:""
-        },
-        {
-            id: "tkt_750",
-            title: "Staging Bug",
-            progress: "IN PROGRESS",
-            description: "Fix the staging Bug",
-            startDate: Date.now(),
-            endDate: "",
-            closeReason:""
-        }],
+        value: helper.getStorageData("t2d_tasks") || [],
     },
     reducers: {
         addNewTicket: (state, action) => {
-            state.value = [...state.value, action.payload];
+            const tickets = [...state.value, action.payload]
+            state.value = tickets;
+            helper.setStorageData("t2d_tasks", tickets)
         },
         updateTicketStatus: (state, action) => {
             debugger;
@@ -54,6 +40,7 @@ export const boardSlice = createSlice({
             }
             console.log(tickets);
             state.value = tickets;
+            helper.setStorageData("t2d_tasks", tickets)
         },
         updateCompletionTime: (state, action) => {
             debugger;
@@ -63,6 +50,7 @@ export const boardSlice = createSlice({
             tickets[index].progress = BOARD_PROGRESS_COLUMNS.COMPLETED;
             tickets[index].closeReason = action.payload.closeReason;
             state.value = tickets;
+            helper.setStorageData("t2d_tasks", tickets)
         },
     },
 });
@@ -76,3 +64,24 @@ export const { addNewTicket, updateTicketStatus, updateCompletionTime } = boardS
 export const selectBoard = state => state.board.value;
 
 export default boardSlice.reducer;
+
+/*
+[{
+            id: "tkt_567",
+            title: "Prod Bug",
+            progress: "NOT STARTED",
+            description: "Fix the production Bug",
+            startDate: Date.now(),
+            endDate: "",
+            closeReason:""
+        },
+        {
+            id: "tkt_750",
+            title: "Staging Bug",
+            progress: "IN PROGRESS",
+            description: "Fix the staging Bug",
+            startDate: Date.now(),
+            endDate: "",
+            closeReason:""
+        }]
+*/

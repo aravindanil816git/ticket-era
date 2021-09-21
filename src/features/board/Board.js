@@ -36,7 +36,7 @@ export function Board() {
     const updateTicketCompletionTime = (ticketId, reason) => {
         Helper.setDelay(5000).then(() => {
             dispatch(updateCompletionTime({ id: ticketId, closeReason: reason }));
-        })
+        });
     }
 
 

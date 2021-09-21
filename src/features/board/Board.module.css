@@ -24,3 +24,8 @@
     justify-content: center;
     text-decoration: underline;
 }
+
+.headerWrapper .indigoBtn {
+    background-color: #7545ff ;
+    border-color: #7545ff;
+}
