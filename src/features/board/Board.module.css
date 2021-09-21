@@ -17,6 +17,9 @@
     padding: 10px;
     border-right: 1.5px dashed #e4e4e4;
     height: calc(100vh - 20px);
+    display: flex !important;
+    align-items: center;
+    flex-direction: column;
 }
 
 .columTitle {
